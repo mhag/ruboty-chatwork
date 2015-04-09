@@ -7,7 +7,7 @@ Get your ChatWork API Token
 
 ``` ruby
 # Gemfile
-gem 'ruboty-chatwork', github: "mhag/ruboty-chatwork"
+gem 'ruboty-chatwork'
 ```
 
 ## ENV
