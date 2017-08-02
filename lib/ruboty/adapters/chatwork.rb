@@ -41,7 +41,7 @@ module Ruboty
       memoize :chatwork_room
 
       def chatwork_messages_url
-        URI.join(chatwork_url, "/v1/rooms/#{chatwork_room}/messages")
+        URI.join(chatwork_url, "/v2/rooms/#{chatwork_room}/messages")
       end
       memoize :chatwork_messages_url
 
