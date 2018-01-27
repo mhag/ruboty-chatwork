@@ -65,11 +65,14 @@ module Ruboty
           res = https.start {|https| https.request(req) }
           pp res.body
           unless res.body.nil?
-            message = JSON.parse(res.body)
-            robot.receive(
-              body: message[0]['body'],
-              from_name: message[0]['account']['name']
-            )
+            messages = JSON.parse(res.body)
+
+            messages.each do |message|
+              robot.receive(
+                body: message['body'],
+                from_name: message['account']['name']
+              )
+            end
           end
 
           sleep (60 * 60) / chatwork_api_rate
