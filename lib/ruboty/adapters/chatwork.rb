@@ -80,17 +80,19 @@ module Ruboty
 
           unless res.body.nil?
             message       = JSON.parse(res.body)
-            original_body = message[0]['body']
+            message.each do | m |
+              original_body = m['body']
 
-            body          = remove_room_id_statement(original_body)
-            from_name     = message[0]['account']['name']
-            room_id       = extract_room_id_statement(original_body)
+              body          = remove_room_id_statement(original_body)
+              from_name     = m['account']['name']
+              room_id       = extract_room_id_statement(original_body)
 
-            robot.receive(
-              body: body,
-              from_name: from_name,
-              room_id: room_id,
-            )
+              robot.receive(
+                body: body,
+                from_name: from_name,
+                room_id: room_id,
+              )
+            end
           end
 
           sleep (60 * 60) / chatwork_api_rate
